@@ -1,6 +1,6 @@
 <template>
   <div class="ghibli">
-    <h1>Ghibli</h1>
+    <h1>Ghiblipedia</h1>
     <img alt="Vue logo" src="../assets/logo.png" />
     <form v-on:submit.prevent>
       <select name="subject" v-model="newSubject">
