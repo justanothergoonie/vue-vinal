@@ -6,7 +6,12 @@ Vue.use(VueRouter);
 
 const routes = [
 	{
-		path: '/Ghibli-Api',
+		path: '/',
+		name: 'Home',
+		component: () => import('../components/Home.vue'),
+	},
+	{
+		path: '/search',
 		name: 'Ghibli-Api',
 		component: () => import('../components/Ghibli-Search.vue'),
 	},

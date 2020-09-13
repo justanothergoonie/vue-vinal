@@ -1,9 +1,5 @@
 <template>
 	<div id="app">
-		<div id="nav">
-			<router-link to="/Ghibli-Api">Ghibli API</router-link>
-		</div>
-
 		<router-view
 			@subject-search="subjectSearch"
 			@specSub-search="specSubSearch"
@@ -72,17 +68,21 @@ export default {
 
 			const GIPHY_API =
 				'https://api.giphy.com/v1/gifs/search?api_key=' +
-				secrets.GIPHY_API_KEY;
+				secrets.GIPHY_API_KEY +
+				'&rating=G';
 
 			this.$http
-				.get(GIPHY_API + '&q=' + this.specSub + ' ghibli')
+				.get(GIPHY_API + '&q=' + this.specSub + ' studio ghibli')
 				.then((response) => {
 					this.gifs = response.data.data;
+					console.log('gimmieGhibliGiphyGifs got gifs', this.gifs);
+					this.gifs.forEach((gif) => {
+						console.log(gif.tags.length);
+					});
 				})
 				.catch(function(error) {
 					console.warn(error);
 				});
-			console.log('gimmieGhibliGiphyGifs got gifs', this.gifs);
 		},
 		subjectSearch: function(newSubject) {
 			console.log('app.vue got subject-search event', newSubject);
@@ -94,6 +94,7 @@ export default {
 			this.specSub = newSpecSub;
 		},
 		doSearch: function() {
+			if (!this.subject) return;
 			this.searchResults = this.apiData[this.subject].filter((item) => {
 				// console.log("filtering a thing", item);
 				for (let i in item) {
@@ -114,7 +115,7 @@ body {
 	background-color: #05adef;
 }
 #app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
+	font-family: Ghibli, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
@@ -131,6 +132,6 @@ body {
 }
 
 #nav a.router-link-exact-active {
-	color: #42b983;
+	color: #05adef;
 }
 </style>

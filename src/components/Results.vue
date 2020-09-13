@@ -2,30 +2,31 @@
   <ul class="results" v-if="searchResults.length > 0">
     <li v-for="result in searchResults" :key="result.id">
       <h1>{{ result.title ? result.title : result.name }}</h1>
-      <div v-if="result.gender">
+      <div class="info-holder" v-if="result.gender">
         <p>
           {{ result.name }} is a {{ result.age }} year old
           {{ result.gender }} with {{ result.eye_color }} eyes and
           {{ result.hair_color }} hair
         </p>
       </div>
-      <div v-if="result.director">
+      <div class="info-holder" v-if="result.director">
+        <span>Summary: {{ result.description }}</span>
         <p>
-          {{ result.title }} was released in
-          {{ result.release_date }} and was directed by
-          {{ result.director }}. Summary: {{ result.description }}
+          Released in
+          {{ result.release_date }} and directed by
+          {{ result.director }}.
         </p>
       </div>
-      <div v-if="result.climate">
+      <div class="info-holder" v-if="result.climate">
         <p>Climate: {{ result.climate }}</p>
         <p>Terrain: {{ result.terrain }}</p>
       </div>
-      <div v-if="result.classification">
+      <div class="info-holder" v-if="result.classification">
         <p>Classification: {{ result.classification }}</p>
         <p>Eye Color(s): {{ result.eye_colors }}</p>
         <p>Hair Color(s): {{ result.hair_colors }}</p>
       </div>
-      <div v-if="result.vehicle_class">
+      <div class="info-holder" v-if="result.vehicle_class">
         <p>Length: {{ result.length }}</p>
         <p>Vehical Class: {{ result.vehicle_class }}</p>
       </div>
@@ -48,5 +49,9 @@ ul {
   padding: 0;
   font-family: Ghibli;
   font-size: 1.3rem;
+}
+.info-holder {
+  display: flex;
+  flex-direction: column;
 }
 </style>
